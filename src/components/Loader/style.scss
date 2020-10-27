@@ -1,0 +1,29 @@
+.backDrop {
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    background: paleturquoise;
+}
+
+.modal {
+    margin: 0 auto;
+    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100%;
+    background: paleturquoise;
+}
+
+.ball-spin-fade-loader > div {
+    background-color: orange;
+    background: #1C9CE4;
+    color: #1C9CE4;
+  }
+
+.spinner_container{
+    position: absolute;
+    padding: 20px;
+    top: 50%;
+    left: 45%;
+}

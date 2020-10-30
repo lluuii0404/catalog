@@ -32,15 +32,15 @@ const ProductComponent = ({...props}) => {
       <Card
         hoverable
         style={{ width: 240 }}
-        cover={<img alt={product.name} className={styles.img} src={product.photo} />}
+        cover={<img alt={product.title} className={styles.img} src={product.photo} />}
         actions={isAdmin ? [
           <EditOutlined key="edit" onClick={handleClick(product)}/>,
           <DeleteOutlined key="delete" onClick={handleDelete(product)} />
         ] : []}
       >
         <Meta
-          style={{overflowY: "scroll"}}
-          title={product.name}
+          style={{paddingBottom: 50,overflowY: "scroll"}}
+          title={product.title}
           description={
             <div>
               {product.description}

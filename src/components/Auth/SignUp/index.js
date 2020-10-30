@@ -22,17 +22,6 @@ export const SignUpForm = ({...props}) =>  {
   const onSubmit = values => {
     console.log(">>> ", values, " <<< event <<<");
 
-    firebase
-      .doCreateUserWithEmailAndPassword(values.email, values.password)
-      .then(authUser => {
-        console.log(">>> ", authUser, " <<< authUser <<<");
-        // this.setState({ ...INITIAL_STATE  });
-      })
-      .catch(error => {
-        console.log(">>> ", error, " <<< error <<<");
-        // this.setState({ error });
-      });
-
     // event.preventDefault();
   }
 

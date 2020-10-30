@@ -10,6 +10,7 @@ import store from './store';
 import firebase from './utils/firebase';
 
 import './assets/styles/_global.scss';
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 
 const rrfProps = {
   firebase,

@@ -4,7 +4,9 @@ import {Switch, Route, BrowserRouter as Router} from "react-router-dom";
 import { Navigation } from "../Navigation";
 import { SignUp as SignUpPage } from '../../pages/Auth/SingUp';
 import { SignIn as SignInPage } from '../../pages/Auth/SingIn';
-import { Home as HomePage } from '../Home';
+import { Home as HomePage } from '../../pages/Home';
+import { Catalog as CatalogPage } from '../../pages/Catalog';
+import { ProductPage } from "../../pages/ProductPage";
 
 import * as ROUTES from "../../utils/routes";
 import history from "../../utils/history";
@@ -19,41 +21,12 @@ const App = () => {
 
         <hr />
 
-        {/*<Route path="/sign" component={SignUpPage} />*/}
-        {/*<PrivateRoute path="/catalog">*/}
-        {/*  {*/}
-        {/*    () => {*/}
-        {/*      return(*/}
-        {/*        <div>*/}
-        {/*         <h1>CATALOG</h1>*/}
-        {/*          <button>Add</button>*/}
-        {/*          <div>*/}
-        {/*            <ul>*/}
-        {/*              <li>1</li>*/}
-        {/*              <li>2</li>*/}
-        {/*              <li>3</li>*/}
-        {/*            </ul>*/}
-        {/*          </div>*/}
-        {/*        </div>*/}
-        {/*      )*/}
-        {/*    }*/}
-        {/*  }*/}
-        {/*</PrivateRoute>*/}
-        {/*<PrivateRoute path="/catalog/new-item">*/}
-        {/*  /!*<ProtectedPage />*!/*/}
-        {/*</PrivateRoute>*/}
-        {/*<PrivateRoute path="/catalog/update-item/:id">*/}
-        {/*  /!*<ProtectedPage />*!/*/}
-        {/*</PrivateRoute>*/}
-
-        <Switch>
-          <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-          <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-          <Route path={ROUTES.HOME} component={HomePage} />
-          <Route path={ROUTES.CATALOG} component={HomePage} />
-          <Route path={ROUTES.NEW_ITEM} component={HomePage} />
-          <Route path={ROUTES.UPDATE_ITEM} component={HomePage} />
-        </Switch>
+        <Route exact path={ROUTES.HOME} component={HomePage} />
+        <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
+        <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
+        <Route exact path={ROUTES.CATALOG} component={CatalogPage} />
+        <Route exact path={ROUTES.NEW_ITEM} component={ProductPage} />
+        <Route exact path={[ROUTES.UPDATE_ITEM, `${ROUTES.UPDATE_ITEM}/:id`]} component={ProductPage} />
 
       </div>
     </Router>

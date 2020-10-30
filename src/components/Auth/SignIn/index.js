@@ -1,30 +1,39 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {connect} from "react-redux";
 
 import { Field, Form } from "react-final-form";
+import { SignUpLink } from "../SignUp";
 
-import { validation } from "../../../utils/validation";
-import {SignUpLink} from "../SignUp";
+import { validationSignIn } from "../../../utils/validation";
+import { signIn } from "../../../actions/actionsAuth";
+
+import * as ROUTES from '../../../utils/routes';
 
 const INITIAL_STATE = {
   email: '',
   password: '',
-  // confirm: '',
-  error: null
 }
 
-export const SignInForm = ({...props}) =>  {
+const SignInForm = ({...props}) =>  {
+  console.log(">>> ", props, " <<< props <<<");
 
-  const onSubmit = values => {
-    console.log(">>> ", values, " <<< event <<<");
-  }
+  const {signIn, user, history} = props;
+
+  useEffect(() => {
+    if (user){
+      history.push(ROUTES.CATALOG)
+    }
+  }, [user]);
+
+  const onSubmit = values => signIn(values);
 
   return (
     <>
       <Form
         initialValues={INITIAL_STATE}
-        validate={validation}
+        validate={validationSignIn}
         onSubmit={onSubmit}
-        render={({ handleSubmit, submitting, values }) => {
+        render={({ handleSubmit }) => {
           return (
             <form onSubmit={handleSubmit}>
               <Field name="email">
@@ -48,7 +57,7 @@ export const SignInForm = ({...props}) =>  {
               <div className="buttons">
                 <button
                   type="submit"
-                  disabled={submitting}
+                  // disabled={submitting}
                 >
                   Sign In
                 </button>
@@ -62,3 +71,15 @@ export const SignInForm = ({...props}) =>  {
   );
 }
 
+const mapStateToProps = state => {
+  return {
+    user: state.auth.user
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    signIn: user => dispatch(signIn(user))
+  }
+}
+export const SignIn = connect(mapStateToProps, mapDispatchToProps)(SignInForm)

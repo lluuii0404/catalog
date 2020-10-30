@@ -1,18 +1,26 @@
 import React from 'react';
-import {Switch, Route, BrowserRouter as Router} from "react-router-dom";
+import { connect } from "react-redux";
 
+import { Route, BrowserRouter as Router} from "react-router-dom";
 import { Navigation } from "../Navigation";
 import { SignUp as SignUpPage } from '../../pages/Auth/SingUp';
 import { SignIn as SignInPage } from '../../pages/Auth/SingIn';
 import { Home as HomePage } from '../../pages/Home';
 import { Catalog as CatalogPage } from '../../pages/Catalog';
+
 import { ProductPage } from "../../pages/ProductPage";
-
 import * as ROUTES from "../../utils/routes";
+import {reloadPage, signIn} from "../../actions/actionsAuth";
 import history from "../../utils/history";
+import storage from "../../utils/storage";
 
-const App = () => {
-  console.log(">>> ", 1111, " <<< 1111 <<<");
+const App = ({...props}) => {
+
+  const user = storage.get('user');
+  if (Object.keys(user).length > 0) {
+    console.log(">>> ", 11111, " <<< 11111 <<<");
+    reloadPage(user)
+  }
 
   return (
     <Router history={history}>
@@ -33,4 +41,8 @@ const App = () => {
   );
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  reloadPage: user => dispatch(reloadPage(user))
+})
+
+export default connect(null, mapDispatchToProps)(App);

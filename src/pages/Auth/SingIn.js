@@ -1,9 +1,9 @@
 import React from 'react'
-import { SignInForm } from "../../components/Auth/SignIn";
+import { SignIn as SignInComponent } from "../../components/Auth/SignIn";
 
-export const SignIn = () => (
+export const SignIn = ({...props}) => (
   <div>
     <h1>Sign In</h1>
-    <SignInForm />
+    <SignInComponent {...props}/>
   </div>
 );

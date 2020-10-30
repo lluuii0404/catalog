@@ -1,14 +1,15 @@
 import React from 'react';
+import {connect} from "react-redux";
 
 import { Card } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+
+import { removeProduct } from "../../actions/actionsProduct";
 
 import * as ROUTES from "../../utils/routes";
 import { dateEndSale } from "../../utils/helper";
 
 import styles from './styles.module.scss'
-import {connect} from "react-redux";
-import {removeProduct} from "../../actions/actionsProduct";
 
 const { Meta } = Card;
 

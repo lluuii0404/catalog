@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Field, Form } from "react-final-form";
 
 import * as ROUTES from "../../../utils/routes";
-import { validation } from "../../../utils/validation";
+import { validationSignUp } from "../../../utils/validation";
 
 const INITIAL_STATE = {
   // email: 'user@mail.com',
@@ -17,7 +17,7 @@ const INITIAL_STATE = {
 }
 
 export const SignUpForm = ({...props}) =>  {
-  const {firebase} = props;
+  // const {firebase} = props;
 
   const onSubmit = values => {
     console.log(">>> ", values, " <<< event <<<");
@@ -29,7 +29,7 @@ export const SignUpForm = ({...props}) =>  {
     <>
     <Form
       initialValues={INITIAL_STATE}
-      validate={validation}
+      validate={validationSignUp}
       onSubmit={onSubmit}
       render={({ handleSubmit,  submitting }) => (
         <form onSubmit={handleSubmit}>

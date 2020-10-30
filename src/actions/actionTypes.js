@@ -9,3 +9,13 @@ export const GET_CURRENT_PRODUCT_ERROR = 'GET_CURRENT_PRODUCT_ERROR';
 
 export const UPDATE_CURRENT_PRODUCT = 'UPDATE_CURRENT_PRODUCT';
 export const UPDATE_CURRENT_PRODUCT_ERROR = 'UPDATE_CURRENT_PRODUCT_ERROR';
+
+/* *** auth *** */
+export const SIGN_IN = 'SIGN_IN';
+export const SIGN_IN_ERROR = 'SIGN_IN_ERROR';
+export const RELOAD_PAGE = 'RELOAD_PAGE';
+
+export const SIGN_UP = 'SIGN_UP';
+export const SIGN_UP_ERROR = 'SIGN_UP_ERROR';
+
+export const SIGN_OUT = 'SIGN_OUT';

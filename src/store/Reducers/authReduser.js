@@ -20,9 +20,14 @@ export const authReducer = (state = {}, action) => {
         error: action.error
       };
     case SIGN_UP:
-      return state;
+      storage.set('user', action.user)
+      return {
+        user: action.user
+      };
     case SIGN_UP_ERROR:
-      return state;
+      return {
+        error: action.error
+      };
     case SIGN_OUT:
       storage.remove('user')
       return {

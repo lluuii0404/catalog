@@ -12,7 +12,6 @@ const NavigationComponent = ({...props}) => {
 
   useEffect(() => {}, [user])
 
-
   const handleSignOut = event => {
     event.preventDefault();
     signOut();

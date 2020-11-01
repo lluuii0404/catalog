@@ -1,10 +1,10 @@
 import React from 'react'
-import { SignUpForm } from "../../components/Auth/SignUp";
+import { SignUp as SignUpComponent } from "../../components/Auth/SignUp";
 
 
-export const SignUp = () => (
+export const SignUp = ({...props}) => (
   <div>
     <h1>Sign Up</h1>
-    <SignUpForm />
+    <SignUpComponent {...props} />
   </div>
 );

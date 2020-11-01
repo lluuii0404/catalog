@@ -1,10 +1,12 @@
 import React from 'react';
+import {connect} from "react-redux";
 
 import { NavLink } from "react-router-dom";
 
 import * as ROUTES from "../../utils/routes";
 
-export const Home = () => {
+export const HomeComponent = ({...props}) => {
+  const {user} = props;
   return (
     <>
       Hello guys. <br/>
@@ -13,8 +15,12 @@ export const Home = () => {
       You can replace this your product and keep calm.<br/>
       So, click to <NavLink to={ROUTES.CATALOG}>"Catalog"</NavLink> and let's go.<br/>
 
-      P.S. Psss... You must be registred. <NavLink to={ROUTES.SIGN_UP}> Sign up </NavLink><br/>
+      {!user && <>P.S.Psss... You must be registred. <NavLink to={ROUTES.SIGN_UP}> Sign up </NavLink><br/></> }
 
     </>
   );
 };
+const mapStateToProps = state => ({
+  user: state.auth.user
+})
+export const Home = connect(mapStateToProps)(HomeComponent)

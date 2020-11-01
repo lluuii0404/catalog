@@ -1,28 +1,36 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {connect} from "react-redux";
 
 import { Link } from "react-router-dom";
 import { Field, Form } from "react-final-form";
+
+import { signUp } from "../../../actions/actionsAuth";
 
 import * as ROUTES from "../../../utils/routes";
 import { validationSignUp } from "../../../utils/validation";
 
 const INITIAL_STATE = {
-  // email: 'user@mail.com',
-  // password: 'qwerty@1',
-  // confirm: 'qwerty@1'
   email: '',
   password: '',
   confirm: '',
-  error: null
 }
 
 export const SignUpForm = ({...props}) =>  {
-  // const {firebase} = props;
+  const { user, signUp, history } = props;
+  console.log(">>> ", props, " <<< props <<<");
+
+  useEffect(() => {
+    if (user){
+      history.push(ROUTES.CATALOG)
+    }
+  }, [user]);
 
   const onSubmit = values => {
-    console.log(">>> ", values, " <<< event <<<");
-
-    // event.preventDefault();
+    const data = {
+      email: values.email,
+      password: values.password
+    }
+    signUp(data);
   }
 
   return (
@@ -80,3 +88,16 @@ export const SignUpLink = () => (
     Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
   </p>
 );
+
+const mapStateToProps = state => {
+  return {
+    user: state.auth.user
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    signUp: user => dispatch(signUp(user))
+  }
+}
+export const SignUp = connect(mapStateToProps, mapDispatchToProps)(SignUpForm)

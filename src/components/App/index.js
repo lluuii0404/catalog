@@ -26,7 +26,7 @@ const App = ({...props}) => {
   return (
     <Router history={history}>
       <div>
-        <Navigation {...props}/>
+        <Navigation />
 
         <hr />
 

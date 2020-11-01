@@ -1,7 +1,10 @@
 import {
   RELOAD_PAGE,
   SIGN_IN,
-  SIGN_IN_ERROR, SIGN_OUT
+  SIGN_IN_ERROR,
+  SIGN_OUT,
+  SIGN_UP,
+  SIGN_UP_ERROR
 } from "./actionTypes";
 
 export const signIn = (user) => {
@@ -23,8 +26,20 @@ export const signIn = (user) => {
 
 }
 
-export const signUp = () => {
+export const signUp = user => {
+  return (dispatch, getState, { getFirebase }) => {
+    const firebase = getFirebase();
 
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(user.email, user.password)
+      .then(() => {
+        dispatch({ type: SIGN_UP, user });
+      })
+      .catch(error => {
+        dispatch({ type: SIGN_UP_ERROR, error} );
+      });
+  };
 }
 
 export const signOut = () => {

@@ -16,6 +16,9 @@ const UploadPhoto = ({ input: { value, onChange, ...input }, meta, src }) => {
   }, []);
 
   const handleChange = async ({ target }) => {
+    if (!target.files[0]) {
+      return;
+    }
     const validationResponse = await photoValidation({
       file: target.files[0],
       rules: {

@@ -18,7 +18,7 @@ const UploadPhoto = ({ input: { value, onChange, ...input }, meta }) => {
 
   return (
     <div>
-      <label className={styles.label} for="upload-photo">
+      <label className={styles.label} htmlFor="upload-photo">
         <PhotoView alt="Your Photo" src={currentPhoto} />
         <input
           className={styles.input}

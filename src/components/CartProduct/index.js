@@ -34,7 +34,7 @@ const ProductComponent = ({ ...props }) => {
       <Card
         hoverable
         style={{ width: 240 }}
-        cover={<PhotoView alt={product.title} className={styles.img} src={product.photo} />}
+        cover={<PhotoView alt={product.title} src={product.photo} />}
         actions={
           isProductToCurrentUser
             ? [

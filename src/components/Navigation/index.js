@@ -8,11 +8,14 @@ import { signOut } from "../../actions/actionsAuth";
 import * as ROUTES from '../../utils/routes';
 
 const NavigationComponent = ({...props}) => {
-  const { user } = props;
+  const { user, signOut } = props;
+
   useEffect(() => {}, [user])
+
 
   const handleSignOut = event => {
     event.preventDefault();
+    signOut();
   }
 
   return (
@@ -45,13 +48,13 @@ const NavigationComponent = ({...props}) => {
 
 const mapStateToProps = state => {
   return {
-    user: state.auth.user
+    user: state.auth.user,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    signOut: user => dispatch(signOut(user))
+    signOut: () => dispatch(signOut())
   }
 }
 export const Navigation = connect(mapStateToProps, mapDispatchToProps)(NavigationComponent)

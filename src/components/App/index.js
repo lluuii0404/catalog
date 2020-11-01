@@ -7,25 +7,26 @@ import { SignUp as SignUpPage } from '../../pages/Auth/SingUp';
 import { SignIn as SignInPage } from '../../pages/Auth/SingIn';
 import { Home as HomePage } from '../../pages/Home';
 import { Catalog as CatalogPage } from '../../pages/Catalog';
-
 import { ProductPage } from "../../pages/ProductPage";
-import * as ROUTES from "../../utils/routes";
-import {reloadPage, signIn} from "../../actions/actionsAuth";
+
+import { reloadPage } from "../../actions/actionsAuth";
+
 import history from "../../utils/history";
 import storage from "../../utils/storage";
+import * as ROUTES from "../../utils/routes";
 
 const App = ({...props}) => {
+  const { reloadPage } = props;
 
   const user = storage.get('user');
-  if (Object.keys(user).length > 0) {
-    console.log(">>> ", 11111, " <<< 11111 <<<");
+  if ( user && Object.keys(user).length > 0) {
     reloadPage(user)
   }
 
   return (
     <Router history={history}>
       <div>
-        <Navigation />
+        <Navigation {...props}/>
 
         <hr />
 

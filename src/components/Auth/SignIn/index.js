@@ -15,8 +15,6 @@ const INITIAL_STATE = {
 }
 
 const SignInForm = ({...props}) =>  {
-  console.log(">>> ", props, " <<< props <<<");
-
   const {signIn, user, history} = props;
 
   useEffect(() => {

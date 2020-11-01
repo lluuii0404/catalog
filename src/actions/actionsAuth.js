@@ -41,10 +41,7 @@ export const signOut = () => {
 }
 
 
-export const reloadPage = user => {
-  console.log(">>> ", user, " <<< user <<<");
-  return ({
-    type: RELOAD_PAGE,
-    user
-  });
-}
+export const reloadPage = user => ({
+  type: RELOAD_PAGE,
+  user
+})

@@ -25,9 +25,10 @@ export const authReducer = (state = {}, action) => {
       return state;
     case SIGN_OUT:
       storage.remove('user')
-      return state;
+      return {
+        user: null
+      };
     case RELOAD_PAGE:
-      console.log(">>> ", action.user, " <<< action.user <<<");
       return {
         user: action.user
       };

@@ -100,6 +100,7 @@ const ProductForm = ({ ...props }) => {
     }
     history.push(ROUTES.CATALOG);
   };
+
   return (
     <>
       <Form
@@ -118,7 +119,10 @@ const ProductForm = ({ ...props }) => {
                   </div>
                 )}
               </Field>
-              <Field name="photo" component={UploadPhoto} />
+              <Field
+                name="photo"
+                component={(props) => <UploadPhoto {...props} src={initialState.photo} />}
+              />
               <Field name="description">
                 {({ input, meta }) => (
                   <div>

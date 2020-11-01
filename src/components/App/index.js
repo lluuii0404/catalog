@@ -25,10 +25,8 @@ const App = ({...props}) => {
 
   return (
     <Router history={history}>
-      <div>
+      <>
         <Navigation />
-
-        <hr />
 
         <Route exact path={ROUTES.HOME} component={HomePage} />
         <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
@@ -37,7 +35,7 @@ const App = ({...props}) => {
         <Route exact path={ROUTES.NEW_ITEM} component={ProductPage} />
         <Route exact path={[ROUTES.UPDATE_ITEM, `${ROUTES.UPDATE_ITEM}/:id`]} component={ProductPage} />
 
-      </div>
+      </>
     </Router>
   );
 }

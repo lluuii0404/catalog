@@ -1,0 +1,9 @@
+@import "colors";
+@mixin container {
+    width: 540px;
+    height: 360px;
+    margin: 12% auto;
+    padding: 20px;
+    box-shadow: $main-shadow;
+    background-color: $main-white;
+}

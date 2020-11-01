@@ -5,19 +5,21 @@ import { NavLink } from "react-router-dom";
 
 import * as ROUTES from "../../utils/routes";
 
+import styles from './styles.module.scss'
+
 export const HomeComponent = ({...props}) => {
   const {user} = props;
   return (
-    <>
-      Hello guys. <br/>
-      Nice to meet you!<br/>
-      Now, you here in platform to buy or pain different products.<br/>
-      You can replace this your product and keep calm.<br/>
-      So, click to <NavLink to={ROUTES.CATALOG}>"Catalog"</NavLink> and let's go.<br/>
+    <div className={styles.container}>
+      <p className={styles.title}>Hello guys.</p>
+      <p className={styles.subtitle}>Nice to meet you!</p>
+      <p>Now, you here in platform to buy or pay different products.</p>
+      <p>You can replace this your product and keep calm.</p>
+      <p>So, click to <NavLink to={ROUTES.CATALOG}>«Catalog»</NavLink> and let's go.</p>
 
-      {!user && <>P.S.Psss... You must be registred. <NavLink to={ROUTES.SIGN_UP}> Sign up </NavLink><br/></> }
+      <p>{!user && <>P.S. Psss... You must be registered. <NavLink to={ROUTES.SIGN_UP}> Sign up </NavLink></> }</p>
 
-    </>
+    </div>
   );
 };
 const mapStateToProps = state => ({

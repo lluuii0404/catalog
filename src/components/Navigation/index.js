@@ -7,6 +7,8 @@ import { signOut } from "../../actions/actionsAuth";
 
 import * as ROUTES from '../../utils/routes';
 
+import styles from './styles.module.scss'
+
 const NavigationComponent = ({...props}) => {
   const { user, signOut } = props;
 
@@ -18,24 +20,24 @@ const NavigationComponent = ({...props}) => {
   }
 
   return (
-    <div>
-      <ul>
+    <div className={styles.wrapper}>
+      <ul className={styles.container}>
         {
           !user && (
-            <li>
+            <li className={styles.link}>
               <Link to={ROUTES.SIGN_IN}>Sign In</Link>
             </li>
           )
         }
-        <li>
+        <li className={styles.link}>
           <Link to={ROUTES.HOME}>Home</Link>
         </li>
-        <li>
+        <li className={styles.link}>
           <Link to={ROUTES.CATALOG}>Catalog</Link>
         </li>
         {
           user && (
-          <li>
+          <li className={styles.link}>
             <button onClick={handleSignOut}>Sign Out</button>
           </li>
           )

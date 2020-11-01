@@ -1,4 +1,5 @@
 @import-normalize;
+@import "colors";
 
 * {
     box-sizing: border-box;
@@ -12,7 +13,11 @@ body {
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    min-width: 1360px;
+    color: $main-black;
+    font-size: 14px;
+    width: 100vw !important;
+    min-height: 100vh !important;
+    background-color: $main-bg !important;
 }
 
 select, input {

@@ -14,7 +14,9 @@ import styles from './styles.module.scss'
 const { Meta } = Card;
 
 const ProductComponent = ({...props}) => {
-  const { history, product, removeProduct } = props;
+  const { user, history, product, removeProduct } = props;
+
+  const isProductToCurrentUser = (user && user.email) === (product && product.userId)
 
   const handleClick = product => event => {
     event.preventDefault();
@@ -26,15 +28,13 @@ const ProductComponent = ({...props}) => {
     removeProduct(product)
   }
 
-  const isAdmin = true;
-
   return (
     <div style={{width: 240, margin: 20 }}>
       <Card
         hoverable
         style={{ width: 240 }}
         cover={<img alt={product.title} className={styles.img} src={product.photo} />}
-        actions={isAdmin ? [
+        actions={isProductToCurrentUser ? [
           <EditOutlined key="edit" onClick={handleClick(product)}/>,
           <DeleteOutlined key="delete" onClick={handleDelete(product)} />
         ] : []}
@@ -69,6 +69,9 @@ const ProductComponent = ({...props}) => {
     </div>
   );
 };
+const mapStateToProps = state => ({
+  user: state.auth.user
+})
 
 const mapDispatchToProps = dispatch => {
   return{
@@ -76,4 +79,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export const CartProduct = connect(null, mapDispatchToProps)(ProductComponent)
+export const CartProduct = connect(mapStateToProps, mapDispatchToProps)(ProductComponent)

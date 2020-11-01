@@ -11,8 +11,10 @@ import {
 import { dateToTimestamp } from "../../utils/helper";
 // import { validation } from "../../utils/validation";
 
+import * as ROUTES from "../../utils/routes";
+
 const ProductForm = ({...props}) => {
-  const { location, addProduct, currentProduct, getCurrentProduct, updateProduct } = props;
+  const { history, location, user, addProduct, currentProduct, getCurrentProduct, updateProduct } = props;
 
   const isUpdateProduct = location.pathname.match(/\/update/);
 
@@ -54,13 +56,21 @@ const ProductForm = ({...props}) => {
 
   }, [currentProduct]);
 
+  useEffect(() => {
+    if (!user) {
+      history.push(ROUTES.SIGN_IN)
+    }
+  }, [user]);
+
+  const userId = user && user.email
+
   const  onSubmit = values => {
     if (!isUpdateProduct) {
       const data = {
         ...values,
         sale: values.sale === 'yes',
         dateOffSale: values.sale === 'yes' ? dateToTimestamp(values.dateOffSale) : '',
-        userId: 'user@mail.com' // todo - need fix to current user, check user
+        userId
       }
       addProduct(data)
     }
@@ -70,10 +80,10 @@ const ProductForm = ({...props}) => {
         id: id,
         sale: values.sale === 'yes',
         dateOffSale: values.sale === 'yes' ? dateToTimestamp(values.dateOffSale) : '',
-        userId: 'user@mail.com' // todo - need fix to current user , check user
       }
       updateProduct(data)
     }
+    history.push(ROUTES.CATALOG)
   }
   return (
     <>
@@ -85,11 +95,6 @@ const ProductForm = ({...props}) => {
           return (
             <form
               onSubmit={handleSubmit}
-              // onSubmit={event => {
-              //   handleSubmit(event).then(() => {
-              //     form.reset();
-              //   })
-              // }}
             >
               <Field name="title">
                 {({input, meta}) => (
@@ -154,7 +159,7 @@ const ProductForm = ({...props}) => {
                 {({input, meta}) => (
                   <div>
                     <label>Sale end date</label>
-                    <input {...input} type="text" placeholder="Sale end date"/>
+                    <input {...input} type="text" placeholder="format DD-MM-YYYY"/>
                     {meta.error && meta.touched && <span>{meta.error}</span>}
                   </div>
                 )}
@@ -176,11 +181,10 @@ const ProductForm = ({...props}) => {
   )
 };
 
-const mapStateToProps = state => {
-  return {
-    currentProduct: state.currentProduct
-  }
-}
+const mapStateToProps = state => ({
+  user: state.auth.user,
+  currentProduct: state.currentProduct
+})
 
 const mapDispatchToProps = dispatch => {
   return {

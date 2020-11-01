@@ -9,7 +9,9 @@ import { CartProduct } from "../CartProduct";
 import * as ROUTES from '../../utils/routes';
 
 const CatalogComponent = ({...props}) => {
-  const { products } = props;
+  const { products, user } = props;
+
+  const AddNewProductJsx = user && <NavLink to={ROUTES.NEW_ITEM}>Add New Product</NavLink>
 
   const ProductsListJsx = products &&
     products.map(
@@ -18,7 +20,7 @@ const CatalogComponent = ({...props}) => {
 
   return (
     <>
-      <NavLink to={ROUTES.NEW_ITEM}>Add New Product</NavLink>
+      { AddNewProductJsx }
       { ProductsListJsx }
     </>
   );
@@ -27,8 +29,8 @@ const CatalogComponent = ({...props}) => {
 const mapStateToProps = state => {
   const products = state.firestore.ordered.product;
   return {
+    user: state.auth.user,
     products,
-    // uid: state.firebase.auth.uid
   }
 }
 
@@ -37,8 +39,6 @@ export const Catalog = compose(
   firestoreConnect((ownProps) => [
     {
       collection: "product",
-      // where: ["authorId", "==", ownProps.uid],
-      // orderBy: ["date", "desc"],
     },
   ])
 )(CatalogComponent)

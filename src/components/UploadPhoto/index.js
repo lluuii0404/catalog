@@ -2,15 +2,32 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import PhotoView from '../PhotoView';
 import styles from './styles.module.scss';
-import { readFileAsync } from '../../utils/helper';
+import { photoValidation, readFileAsync } from '../../utils/helper';
 import uploadPlaceholder from '../../assets/styles/images/upload-placeholder.jpg';
+import { toast } from 'react-toastify';
 
 const UploadPhoto = ({ input: { value, onChange, ...input }, meta }) => {
   const [photo, setPhoto] = useState(null);
 
   const handleChange = async ({ target }) => {
-    onChange(target.files);
+    const validationResponse = await photoValidation({
+      file: target.files[0],
+      rules: {
+        minWidth: 200,
+        minHeight: 200,
+        maxWidth: 4000,
+        maxHeigh: 4000,
+      },
+    });
+
+    if (validationResponse) {
+      onChange(null);
+      setPhoto(null);
+      toast.error(validationResponse);
+      return;
+    }
     const photo = await readFileAsync(target.files[0]);
+    onChange(target.files);
     setPhoto(photo);
   };
 

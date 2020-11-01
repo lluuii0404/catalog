@@ -73,7 +73,10 @@ const ProductForm = ({ ...props }) => {
   const userId = user && user.email;
 
   const onSubmit = async (values) => {
-    const photo = await readFileAsync(values.photo[0]);
+    let photo = null;
+    if (values.photo && values.photo[0]) {
+      photo = await readFileAsync(values.photo[0]);
+    }
 
     if (!isUpdateProduct) {
       const data = {

@@ -8,3 +8,11 @@
     background-color: $main-white;
     border-radius: 10px;
 }
+@mixin button {
+    padding: 7px 20px;
+    width: 200px;
+    color: $main-black;
+    background-color: $main-white;
+    border: 2px solid $main-black;
+    border-radius: 20px;
+}

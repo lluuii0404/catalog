@@ -8,10 +8,16 @@ import { CartProduct } from "../CartProduct";
 
 import * as ROUTES from '../../utils/routes';
 
+import styles from './styles.module.scss';
+
 const CatalogComponent = ({...props}) => {
   const { products, user } = props;
 
-  const AddNewProductJsx = user && <NavLink to={ROUTES.NEW_ITEM}>Add New Product</NavLink>
+  const AddNewProductJsx = user && (
+    <div className={styles.new_product}>
+      <NavLink to={ROUTES.NEW_ITEM}>Add New Product</NavLink>
+    </div>
+  )
 
   const ProductsListJsx = products &&
     products.map(
@@ -19,10 +25,12 @@ const CatalogComponent = ({...props}) => {
     )
 
   return (
-    <>
+    <div className={styles.wrapper}>
       { AddNewProductJsx }
-      { ProductsListJsx }
-    </>
+      <div className={styles.container}>
+        { ProductsListJsx }
+      </div>
+    </div>
   );
 };
 

@@ -1,0 +1,29 @@
+@import "src/assets/styles/mixins";
+@import "src/assets/styles/colors";
+
+.wrapper{
+    padding: 0 30px 30px 30px;
+}
+.new_product{
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+    padding-left: 20px;
+    a {
+        display: inline-block;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        @include button;
+        &:hover{
+            color: $main-white;
+            background-color: $secondary-black;
+            border: 2px solid $secondary-black;
+        }
+    }
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

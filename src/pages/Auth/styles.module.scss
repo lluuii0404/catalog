@@ -1,0 +1,16 @@
+@import "src/assets/styles/mixins";
+@import "src/assets/styles/colors";
+
+.containerIn,
+.containerUp,{
+    @include container;
+    height: 400px;
+    h1{
+        text-align: center;
+        color: $main-black
+    }
+}
+
+.containerUp{
+    height: 450px;
+}

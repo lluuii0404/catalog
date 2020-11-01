@@ -1,0 +1,71 @@
+@import "src/assets/styles/mixins";
+@import "src/assets/styles/colors";
+
+.field{
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    input{
+        border: 0;
+        outline: 0;
+        padding: 7px 10px;
+        border-bottom: 1px solid $main-black;
+        -webkit-box-shadow: inset 0 0 0 50px #fff;
+        -webkit-text-fill-color: $main-black;
+        &:hover{
+            border-bottom: 1px solid $secondary-black;
+        }
+    }
+}
+.label{
+    display: inline-block;
+    font-width: 500;
+    margin-bottom: 5px;
+}
+.error{
+    font-size: 12px;
+    color: $main-red;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    button {
+        padding: 7px 20px;
+        width: 200px;
+        color: $main-black;
+        background-color: $main-white;
+        border: 2px solid $main-black;
+        border-radius: 20px;
+    }
+    button.activate{
+        cursor: pointer;
+        &:hover{
+            color: $main-white;
+            background-color: $secondary-black;
+            border: 2px solid $secondary-black;
+        }
+    }
+    button.disabled{
+        color: $secondary-gray;
+        border: 2px solid $secondary-gray;
+        cursor: no-drop;
+        &:hover{
+            color: $secondary-gray;
+            background-color: $main-white;
+            border: 2px solid $secondary-gray;
+        }
+    }
+
+}
+.link{
+    margin-top: 25px;
+}
+.link > a{
+    color: $main-black;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.link > a:hover {
+    color: $secondary-black;
+}

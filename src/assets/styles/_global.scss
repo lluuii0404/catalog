@@ -13,7 +13,7 @@ body {
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: $main-black;
+    color: $main-black !important;
     font-size: 14px;
     width: 100vw !important;
     min-height: 100vh !important;

@@ -9,6 +9,8 @@ import { signIn } from "../../../actions/actionsAuth";
 
 import * as ROUTES from '../../../utils/routes';
 
+import styles from '../styles.module.scss'
+
 const INITIAL_STATE = {
   email: '',
   password: '',
@@ -31,31 +33,32 @@ const SignInForm = ({...props}) =>  {
         initialValues={INITIAL_STATE}
         validate={validationSignIn}
         onSubmit={onSubmit}
-        render={({ handleSubmit }) => {
+        render={({ handleSubmit,  errors }) => {
+          const idDisabled = Object.keys(errors).length > 0;
           return (
             <form onSubmit={handleSubmit}>
               <Field name="email">
                 {({input, meta}) => (
-                  <div>
-                    <label>Enter Email</label>
+                  <div className={styles.field}>
+                    <label className={styles.label}>Enter Email</label>
                     <input {...input} type="text" placeholder="Email"/>
-                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                    {meta.error && meta.touched && <span className={styles.error}>{meta.error}</span>}
                   </div>
                 )}
               </Field>
               <Field name="password">
                 {({input, meta}) => (
-                  <div>
-                    <label>Enter Password</label>
+                  <div className={styles.field}>
+                    <label className={styles.label} >Enter Password</label>
                     <input {...input} type="password" placeholder="Password"/>
-                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                    {meta.error && meta.touched && <span className={styles.error} >{meta.error}</span>}
                   </div>
                 )}
               </Field>
-              <div className="buttons">
+              <div className={styles.buttons}>
                 <button
                   type="submit"
-                  // disabled={submitting}
+                  className={idDisabled ? styles.disabled : styles.activate}
                 >
                   Sign In
                 </button>

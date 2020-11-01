@@ -8,6 +8,7 @@ import { signUp } from "../../../actions/actionsAuth";
 
 import * as ROUTES from "../../../utils/routes";
 import { validationSignUp } from "../../../utils/validation";
+import styles from "../styles.module.scss";
 
 const INITIAL_STATE = {
   email: '',
@@ -17,7 +18,6 @@ const INITIAL_STATE = {
 
 export const SignUpForm = ({...props}) =>  {
   const { user, signUp, history } = props;
-  console.log(">>> ", props, " <<< props <<<");
 
   useEffect(() => {
     if (user){
@@ -39,52 +39,55 @@ export const SignUpForm = ({...props}) =>  {
       initialValues={INITIAL_STATE}
       validate={validationSignUp}
       onSubmit={onSubmit}
-      render={({ handleSubmit,  submitting }) => (
-        <form onSubmit={handleSubmit}>
-          <Field name="email">
-            {({ input, meta }) => (
-              <div>
-                <label>Email</label>
-                <input {...input} type="text" placeholder="Email" autoComplete='off' />
-                {meta.error && meta.touched && <span>{meta.error}</span>}
-              </div>
-            )}
-          </Field>
-          <Field name="password">
-            {({ input, meta }) => (
-              <div>
-                <label>Password</label>
-                <input {...input} type="password" placeholder="Password" autoComplete='off' />
-                {meta.error && meta.touched && <span>{meta.error}</span>}
-              </div>
-            )}
-          </Field>
-          <Field name="confirm">
-            {({ input, meta }) => (
-              <div>
-                <label>Confirm password</label>
-                <input {...input} type="password" placeholder="Confirm password" autoComplete='off' />
-                {meta.error && meta.touched && <span>{meta.error}</span>}
-              </div>
-            )}
-          </Field>
-          <div className="buttons">
-            <button
-              type="submit"
-              disabled={submitting}
-            >
-              Sign Up
-            </button>
-          </div>
-        </form>
-      )}
+      render={({ handleSubmit, errors}) => {
+        const idDisabled = Object.keys(errors).length > 0;
+        return (
+          <form onSubmit={handleSubmit}>
+            <Field name="email">
+              {({input, meta}) => (
+                <div className={styles.field}>
+                  <label className={styles.label}>Email</label>
+                  <input {...input} type="text" placeholder="Email" autoComplete='off'/>
+                  {meta.error && meta.touched && <span className={styles.error}>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+            <Field name="password">
+              {({input, meta}) => (
+                <div className={styles.field}>
+                  <label className={styles.label}>Password</label>
+                  <input {...input} type="password" placeholder="Password" autoComplete='off'/>
+                  {meta.error && meta.touched && <span className={styles.error}>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+            <Field name="confirm">
+              {({input, meta}) => (
+                <div className={styles.field}>
+                  <label className={styles.label}>Confirm password</label>
+                  <input {...input} type="password" placeholder="Confirm password" autoComplete='off'/>
+                  {meta.error && meta.touched && <span className={styles.error}>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+            <div className={styles.buttons}>
+              <button
+                type="submit"
+                className={idDisabled ? styles.disabled : styles.activate}
+              >
+                Sign Up
+              </button>
+            </div>
+          </form>
+        );
+      }}
     />
     </>
   );
 }
 
 export const SignUpLink = () => (
-  <p>
+  <p className={styles.link}>
     Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
   </p>
 );

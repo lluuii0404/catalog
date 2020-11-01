@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 
 import { Route, BrowserRouter as Router} from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { Navigation } from "../Navigation";
 import { SignUp as SignUpPage } from '../../pages/Auth/SingUp';
 import { SignIn as SignInPage } from '../../pages/Auth/SingIn';
@@ -15,6 +16,8 @@ import history from "../../utils/history";
 import storage from "../../utils/storage";
 import * as ROUTES from "../../utils/routes";
 
+import "react-toastify/dist/ReactToastify.css";
+
 const App = ({...props}) => {
   const { reloadPage } = props;
 
@@ -26,6 +29,7 @@ const App = ({...props}) => {
   return (
     <Router history={history}>
       <>
+        <ToastContainer autoClose={3000} />
         <Navigation />
 
         <Route exact path={ROUTES.HOME} component={HomePage} />

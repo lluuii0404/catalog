@@ -119,10 +119,7 @@ const ProductForm = ({ ...props }) => {
                   </div>
                 )}
               </Field>
-              <Field
-                name="photo"
-                component={(props) => <UploadPhoto {...props} src={initialState.photo} />}
-              />
+              <Field name="photo" src={initialState.photo} component={UploadPhoto} />
               <Field name="description">
                 {({ input, meta }) => (
                   <div>

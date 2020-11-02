@@ -1,0 +1,13 @@
+[debug] [2020-11-02T17:59:16.822Z] ----------------------------------------------------------------------
+[debug] [2020-11-02T17:59:16.825Z] Command:       /usr/local/Cellar/node@10/10.16.2/bin/node /usr/local/bin/firebase deploy
+[debug] [2020-11-02T17:59:16.825Z] CLI Version:   8.14.1
+[debug] [2020-11-02T17:59:16.825Z] Platform:      darwin
+[debug] [2020-11-02T17:59:16.825Z] Node Version:  v10.16.2
+[debug] [2020-11-02T17:59:16.826Z] Time:          Mon Nov 02 2020 19:59:16 GMT+0200 (Eastern European Standard Time)
+[debug] [2020-11-02T17:59:16.826Z] ----------------------------------------------------------------------
+[debug] [2020-11-02T17:59:16.827Z] 
+[debug] [2020-11-02T17:59:16.846Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-11-02T17:59:16.846Z] > authorizing via signed-in user
+[debug] [2020-11-02T17:59:16.847Z] [iam] checking project fir-catalog-dc294 for permissions ["cloudconfig.configs.get","cloudconfig.configs.update","cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2020-11-02T17:59:16.852Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/fir-catalog-dc294:testIamPermissions  
+ {"permissions":["cloudconfig.configs.get","cloudconfig.configs.update","cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}

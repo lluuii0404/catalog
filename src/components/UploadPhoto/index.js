@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import PhotoView from '../PhotoView';
 import styles from './styles.module.scss';
@@ -6,15 +6,7 @@ import { photoValidation, readFileAsync } from '../../utils/helper';
 import uploadPlaceholder from '../../assets/styles/images/upload-placeholder.jpg';
 import { toast } from 'react-toastify';
 
-const UploadPhoto = ({ input: { value, onChange, ...input }, meta, src }) => {
-  const [photo, setPhoto] = useState(null);
-
-  useEffect(() => {
-    if (src) {
-      setPhoto(src);
-    }
-  }, []);
-
+const UploadPhoto = ({ input: { value, onChange, ...input }, meta }) => {
   const handleChange = async ({ target }) => {
     if (!target.files[0]) {
       return;
@@ -30,17 +22,14 @@ const UploadPhoto = ({ input: { value, onChange, ...input }, meta, src }) => {
     });
 
     if (validationResponse) {
-      onChange(null);
-      setPhoto(null);
       toast.error(validationResponse);
       return;
     }
     const photo = await readFileAsync(target.files[0]);
-    onChange(target.files);
-    setPhoto(photo);
+    onChange(photo);
   };
 
-  const currentPhoto = photo || uploadPlaceholder;
+  const currentPhoto = value || uploadPlaceholder;
 
   return (
     <div>

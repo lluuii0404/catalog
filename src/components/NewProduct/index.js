@@ -4,7 +4,7 @@ import { Field, Form } from 'react-final-form';
 
 import { addProduct, getCurrentProduct, updateProduct } from '../../actions/actionsProduct';
 
-import { dateToTimestamp, readFileAsync } from '../../utils/helper';
+import { dateToTimestamp } from '../../utils/helper';
 import styles from './styles.module.scss';
 // import { validation } from "../../utils/validation";
 
@@ -73,15 +73,10 @@ const ProductForm = ({ ...props }) => {
   const userId = user && user.email;
 
   const onSubmit = async (values) => {
-    let photo = null;
-    if (values.photo && values.photo[0]) {
-      photo = await readFileAsync(values.photo[0]);
-    }
-
     if (!isUpdateProduct) {
       const data = {
         ...values,
-        photo: photo,
+        photo: values.photo,
         sale: values.sale === 'yes',
         dateOffSale: values.sale === 'yes' ? dateToTimestamp(values.dateOffSale) : '',
         userId,
@@ -91,7 +86,7 @@ const ProductForm = ({ ...props }) => {
     if (isUpdateProduct) {
       const data = {
         ...values,
-        photo: photo,
+        photo: values.photo,
         id: id,
         sale: values.sale === 'yes',
         dateOffSale: values.sale === 'yes' ? dateToTimestamp(values.dateOffSale) : '',
@@ -119,7 +114,7 @@ const ProductForm = ({ ...props }) => {
                   </div>
                 )}
               </Field>
-              <Field name="photo" src={initialState.photo} component={UploadPhoto} />
+              <Field name="photo" component={UploadPhoto} />
               <Field name="description">
                 {({ input, meta }) => (
                   <div>

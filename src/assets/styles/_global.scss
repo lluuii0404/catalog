@@ -40,3 +40,35 @@ ul {
     color: $main-black !important;
 }
 
+.ant-picker {
+    background: $main-white !important;
+    border: 0 !important;
+    border-bottom: 1px solid $main-black !important;
+    color: $main-black !important;
+    border-radius: 0;
+    outline: 0 !important;
+}
+.ant-picker:hover, .ant-picker-focused {
+    border: 0 !important;
+    border-bottom: 1px solid $secondary-black !important;
+}
+.ant-picker-focused {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+.ant-picker.ant-picker-disabled {
+    background: $main-white  !important;
+    border-bottom: 1px solid $secondary-gray  !important;
+    &:hover{
+        border-bottom: 1px solid $secondary-gray !important;
+    }
+}
+.ant-picker-footer{
+    display: none;
+}
+.ant-picker-input > input{
+    color: $main-black;
+}
+.ant-switch-checked {
+    background-color: $secondary-black !important;
+}

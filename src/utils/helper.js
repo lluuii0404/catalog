@@ -2,10 +2,18 @@ import moment from 'moment';
 
 export const loaderElement = document.getElementById('spinner');
 
-export const dateToTimestamp = (date) => moment(date, 'DD-MM-YYYY').valueOf();
+export const dateToTimestamp = (date) => moment(date).valueOf();
+
 export const dateEndSale = (date) => {
   if (date) {
     return moment(Number(date)).startOf('day').format('ddd DD.MM.YYYY');
+  }
+};
+export const daysLeft = (date) => {
+  if (date) {
+    const dayNow = moment().startOf('day');
+    const dayEnd= moment(Number(date)).startOf('day');
+    return dayEnd.diff(dayNow, 'days');
   }
 };
 
@@ -57,6 +65,9 @@ export const checkWidthAndHeight = ({
 export const photoValidation = async ({ file, rules }) => {
   if (file.type.indexOf('image') == -1) {
     return 'File not supported';
+  }
+  if (file.size > 1000000 ) {
+    return "Image too big (max 1 MB). Because firestore allows you to upload docs up to 1 MB in size";
   }
   const dataUrl = await readFileAsync(file);
   const response = await checkWidthAndHeight({ photo: dataUrl, rules: rules });

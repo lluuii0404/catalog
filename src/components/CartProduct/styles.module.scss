@@ -20,14 +20,24 @@
 .old_price{
     color: $opacity-black;
     text-decoration: line-through;
-    margin-right: 10px;
 }
 .new_price,
 .new_date{
     color: $secondary-red;
     font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    span{
+        display: inline-block;
+    }
+    text-align: right;
 }
 .price{
     color: $main-black;
     font-weight: 500;
+}
+.priceInfo{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
 }

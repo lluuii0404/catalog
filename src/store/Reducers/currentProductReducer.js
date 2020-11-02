@@ -4,28 +4,35 @@ import {
   UPDATE_CURRENT_PRODUCT,
   UPDATE_CURRENT_PRODUCT_ERROR
 } from "../../actions/actionTypes";
+import {toast} from "react-toastify";
 
 export const currentProductReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_CURRENT_PRODUCT: {
       return {
-        ...action.data,
+        product: action.data,
       };
     }
     case GET_CURRENT_PRODUCT_ERROR: {
-      console.log(">>> an error to get current  product<<<");
-      return state;
+      const message = action.error && action.error.message
+      toast.error(message)
+      return {
+        error: action.error
+      }
     }
 
     case UPDATE_CURRENT_PRODUCT: {
-      console.log(">>> UPDATE REDUCER CURRENT ITEM <<<");
+      toast.success('Product update.')
       return {
-        ...action.data,
+        product: action.data,
       };
     }
     case UPDATE_CURRENT_PRODUCT_ERROR: {
-      console.log(">>> an error to get current  product<<<");
-      return state;
+      const message = action.error && action.error.message
+      toast.error(message)
+      return {
+        error: action.error
+      }
     }
     default:
       return state;

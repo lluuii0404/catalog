@@ -5,6 +5,7 @@ import PhotoView from '../PhotoView';
 import { photoValidation, readFileAsync } from '../../utils/helper';
 import { toast } from 'react-toastify';
 
+import classnames from 'classnames';
 import styles from './styles.module.scss';
 import uploadPlaceholder from '../../assets/styles/images/upload-placeholder.jpg';
 
@@ -34,8 +35,11 @@ const UploadPhoto = ({ input: { value, onChange, ...input }, meta }) => {
   const currentPhoto = value || uploadPlaceholder;
 
   return (
-    <div>
-      <label className={styles.label} htmlFor="upload-photo">
+    <div className={styles.field}>
+      <label className={classnames({
+        [styles.label]: true,
+        [styles.labelError]: meta.error && meta.touched
+      })} htmlFor="upload-photo">
         <PhotoView alt="Your Photo" src={currentPhoto} />
         <input
           className={styles.input}
@@ -45,7 +49,7 @@ const UploadPhoto = ({ input: { value, onChange, ...input }, meta }) => {
           onChange={handleChange}
         />
       </label>
-      {meta.error && meta.touched && <span>{meta.error}</span>}
+      {meta.error && meta.touched && <span className={styles.error}>{meta.error}</span>}
     </div>
   );
 };

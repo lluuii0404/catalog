@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { Card } from 'antd';
+import PhotoView from '../PhotoView';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
 import { removeProduct } from '../../actions/actionsProduct';
@@ -10,7 +11,6 @@ import * as ROUTES from '../../utils/routes';
 import { dateEndSale } from '../../utils/helper';
 
 import styles from './styles.module.scss';
-import PhotoView from '../PhotoView';
 
 const { Meta } = Card;
 
@@ -45,24 +45,28 @@ const ProductComponent = ({ ...props }) => {
         }
       >
         <Meta
-          style={{ paddingBottom: 50, overflowY: 'scroll' }}
           title={product.title}
-          description={<div>{product.description}</div>}
+          description={<div className={styles.description}>{product.description}</div>}
         />
-        <div>
-          <span>Price</span>
+        <div className={styles.info}>
+          <span className={styles.title}>Price</span>
           <span>
             {product.sale
-              ? Number(product.price) - Number(product.price) * (Number(product.percent) / 100)
-              : product.price}{' '}
-            ${' '}
+              ? <>
+                  <span className={styles.old_price}> {Number(product.price)} $ </span>
+                  <span className={styles.new_price}> {Number(product.price) - Number(product.price) * (Number(product.percent) / 100)} $</span>
+                </>
+              : <span className={styles.price}>
+                  {product.price} $
+                </span>
+            }
           </span>
         </div>
 
         {product.sale && (
-          <div>
-            <span> Sale to </span>
-            <span> {dateEndSale(product.dateOffSale)} </span>
+          <div className={styles.info}>
+            <span className={styles.title}> Sale to </span>
+            <span className={styles.new_date}> {dateEndSale(product.dateOffSale)} </span>
           </div>
         )}
       </Card>

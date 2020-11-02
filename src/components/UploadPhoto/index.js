@@ -1,10 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import PhotoView from '../PhotoView';
-import styles from './styles.module.scss';
+
 import { photoValidation, readFileAsync } from '../../utils/helper';
-import uploadPlaceholder from '../../assets/styles/images/upload-placeholder.jpg';
 import { toast } from 'react-toastify';
+
+import styles from './styles.module.scss';
+import uploadPlaceholder from '../../assets/styles/images/upload-placeholder.jpg';
 
 const UploadPhoto = ({ input: { value, onChange, ...input }, meta }) => {
   const handleChange = async ({ target }) => {
@@ -46,11 +48,6 @@ const UploadPhoto = ({ input: { value, onChange, ...input }, meta }) => {
       {meta.error && meta.touched && <span>{meta.error}</span>}
     </div>
   );
-};
-
-UploadPhoto.propTypes = {
-  input: PropTypes.any,
-  meta: PropTypes.any,
 };
 
 export default UploadPhoto;

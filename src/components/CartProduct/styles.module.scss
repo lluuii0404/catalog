@@ -1,0 +1,33 @@
+@import "src/assets/styles/mixins";
+@import "src/assets/styles/colors";
+
+.description{
+    min-height: 20px;
+    max-height: 60px;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+}
+
+.info{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+.title{
+    display: inline-block;
+    font-weight: 500;
+}
+.old_price{
+    color: $opacity-black;
+    text-decoration: line-through;
+    margin-right: 10px;
+}
+.new_price,
+.new_date{
+    color: $secondary-red;
+    font-weight: 500;
+}
+.price{
+    color: $main-black;
+    font-weight: 500;
+}

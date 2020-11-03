@@ -44,19 +44,27 @@
         color:  $secondary-gray;
     }
 }
+.breakWord {
+    word-break: break-word;
+}
 .sale{
     width: 40px;
-    height: 70px;
+    height: 40px;
+    flex-direction: row;
     input{
         width: 40px;
     }
+}
+.radio{
+    display: flex !important;
+    margin-left: 30px !important;
 }
 .toSale{
     display: flex;
     flex-direction: row;
 }
 .percent{
-    width: 50px;
+    width: 120px;
     display: flex;
     flex-direction: column;
     height: 40px;

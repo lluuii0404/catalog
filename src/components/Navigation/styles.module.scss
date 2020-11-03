@@ -29,3 +29,7 @@
 .link > button:hover {
     color: $secondary-black;
 }
+.current > a {
+    color: $secondary-black;
+    font-weight: bold;
+}

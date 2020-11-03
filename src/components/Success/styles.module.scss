@@ -1,0 +1,35 @@
+@import "src/assets/styles/mixins";
+@import "src/assets/styles/colors";
+.container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.icon{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+.text{
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 50px;
+    a {
+        @include button;
+        margin-top: 30px;
+        cursor: pointer;
+        &:hover{
+            color: $main-white;
+            background-color: $secondary-black;
+            border: 2px solid $secondary-black;
+        }
+    }
+}

@@ -1,6 +1,11 @@
 import moment from 'moment';
+import * as ROUTES from "./routes";
 
-export const loaderElement = document.getElementById('spinner');
+export const root = {
+  'home' : ROUTES.HOME,
+  'signIn' : ROUTES.SIGN_IN,
+  'catalog' : ROUTES.CATALOG
+}
 
 export const dateToTimestamp = (date) => moment(date).valueOf();
 

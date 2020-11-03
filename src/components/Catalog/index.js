@@ -5,6 +5,7 @@ import { firestoreConnect} from "react-redux-firebase";
 import { NavLink } from "react-router-dom";
 
 import { CartProduct } from "../CartProduct";
+import { Spinner } from "../Spinner";
 
 import * as ROUTES from '../../utils/routes';
 
@@ -24,17 +25,23 @@ const CatalogComponent = ({...props}) => {
       product => <CartProduct key={product.id} product={product} {...props} />
     )
 
+  const loaderJsx = !products && <Spinner />
+
   return (
-    <div className={styles.wrapper}>
-      { AddNewProductJsx }
-      <div className={styles.container}>
-        { ProductsListJsx }
+    <>
+      {loaderJsx}
+      <div className={styles.wrapper}>
+        { AddNewProductJsx }
+        <div className={styles.container}>
+          { ProductsListJsx }
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
 const mapStateToProps = state => {
+  // const products = undefined;
   const products = state.firestore.ordered.product;
   return {
     user: state.auth.user,
@@ -44,7 +51,7 @@ const mapStateToProps = state => {
 
 export const Catalog = compose(
   connect(mapStateToProps),
-  firestoreConnect((ownProps) => [
+  firestoreConnect(() => [
     {
       collection: "product",
     },

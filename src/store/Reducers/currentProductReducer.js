@@ -22,7 +22,6 @@ export const currentProductReducer = (state = {}, action) => {
     }
 
     case UPDATE_CURRENT_PRODUCT: {
-      toast.success('Product update.')
       return {
         product: action.data,
       };

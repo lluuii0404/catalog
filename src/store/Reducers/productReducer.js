@@ -7,7 +7,6 @@ import {toast} from "react-toastify";
 export const productReducer = (state = {}, action) => {
   switch (action.type) {
     case ADD_PRODUCT: {
-      toast.success('Product add.')
       return state;
     }
     case ADD_PRODUCT_ERROR: {

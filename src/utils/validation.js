@@ -44,7 +44,7 @@ export const validationProductForm = values => {
     errors.photo = "Required";
   }
 
-  if (values.description.length > 200) {
+  if (values.description && values.description.length > 200) {
     errors.description = "The description must be less than 200 characters.";
   }
 

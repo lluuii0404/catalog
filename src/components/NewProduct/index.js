@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 import { Field, Form } from 'react-final-form';
-import { Switch, DatePicker } from "antd";
+import { DatePicker, Radio } from "antd";
 import UploadPhoto from '../UploadPhoto';
 
 import { addProduct, getCurrentProduct, updateProduct } from '../../actions/actionsProduct';
 
-import { dateToTimestamp } from '../../utils/helper';
+import {dateToTimestamp, daysLeft} from '../../utils/helper';
 import { validationProductForm } from "../../utils/validation";
 
 import * as ROUTES from '../../utils/routes';
@@ -87,20 +87,20 @@ const ProductForm = ({ ...props }) => {
         userId,
       };
       addProduct(data);
-      // history.push(ROUTES.CATALOG);
     }
     if (isUpdateProduct) {
       const data = {
         ...values,
         id: id,
         photo: values.photo,
-        percent: values.sale ? values.percent : '',
-        dateOffSale: values.sale ? dateToTimestamp(values.dateOffSale) : '',
+        sale: daysLeft(values.dateOffSale) >= 0 ? values.sale : false,
+        percent: values.sale && daysLeft(values.dateOffSale) >= 0 ? values.percent : '',
+        dateOffSale: values.sale && daysLeft(values.dateOffSale) >= 0 ? dateToTimestamp(values.dateOffSale) : '' ,
       };
       updateProduct(data);
       setInitialState(initial)
     }
-    // history.push(ROUTES.CATALOG);
+    history.push(ROUTES.SUCCESS);
   };
 
   return (
@@ -127,7 +127,7 @@ const ProductForm = ({ ...props }) => {
 
               <Field name="description">
                 {({ input, meta }) => (
-                  <div className={ styles.activate }>
+                  <div className={classnames(styles.activate, styles.breakWord) }>
                     <label>Description</label>
                     <input {...input} type="text" placeholder="description" />
                     {meta.error && meta.touched && <span className={styles.error}>{meta.error}</span>}
@@ -149,10 +149,10 @@ const ProductForm = ({ ...props }) => {
                 {({ input }) => (
                     <div className={classnames(styles.activate, styles.sale)}>
                       <label>Sale</label>
-                      <Switch
-                        checked={input.value}
-                        {...input}
-                      />
+                      <Radio.Group {...input} value={input.value} className={styles.radio}>
+                        <Radio value={false}>No</Radio>
+                        <Radio value={true}>Yes</Radio>
+                      </Radio.Group>
                     </div>
                   )
                 }
